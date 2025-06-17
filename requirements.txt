@@ -1,5 +1,8 @@
-fastapi==0.115.12
-joblib==1.5.1
-pydantic==2.11.7
-scikit-learn==1.7.0
-uvicorn==0.34.3
+fastapi==0.111.0 # Ou la version exacte que vous utilisez, sinon Heroku prendra la dernière compatible
+uvicorn==0.30.3
+pydantic==2.11.5 # Doit correspondre à la version utilisée dans votre environnement local si possible
+pandas==2.2.2
+numpy==2.0.2
+scikit-learn==1.6.1
+python-dotenv==1.1.0
+supabase==2.15.3 # Ou la version exacte si vous en utilisez une autre
