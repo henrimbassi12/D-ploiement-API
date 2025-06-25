@@ -78,20 +78,24 @@ origins = [
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"]  # Autorise tous les domaines (pour test),
+    # Utilisez 'origins' pour la production, ou ["*"] pour le test initial (moins sûr)
+    allow_origins=origins, # OU ["*"] pour les tests initiaux non sécurisés
     allow_credentials=True,
     allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],
 )
 
-# Gérer explicitement les requêtes OPTIONS
-@app.options("/")
-@app.options("/predict/")
-@app.options("/{path:path}")
-async def handle_options():
-    return {"status": "ok"}
-async def options_handler():
-    return {"message": "OK"}
+# Supprimez les gestionnaires OPTIONS explicites si CORSMiddleware suffit
+# @app.options("/")
+# @app.options("/predict/")
+# @app.options("/{path:path}")
+# async def handle_options():
+#     return {"status": "ok"}
+
+# Supprimez cette fonction car elle n'est pas utilisée comme gestionnaire de route
+# async def options_handler():
+#    return {"message": "OK"}
+
 
 
 
