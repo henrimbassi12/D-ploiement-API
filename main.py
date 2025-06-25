@@ -2,6 +2,7 @@
 
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 import pickle
 import pandas as pd
 import numpy as np
@@ -62,6 +63,28 @@ app = FastAPI(
     description="API pour prédire le statut d'un frigo après un entretien basé sur ses caractéristiques.",
     version="1.0.0",
 )
+
+
+
+# --- Configuration CORS ---
+origins = [
+    "http://localhost",
+    "http://localhost:8080", # Si votre front-end Lovable tourne localement sur le port 8080
+    "https://gulfmaintain-insight-hub.lovable.app", # <--- C'est la ligne CRUCIALE à ajouter/modifier
+    # Si vous êtes encore en phase de test intensif et que vous avez des doutes sur l'URL exacte,
+    # vous pouvez temporairement laisser le "*" comme dernière option, mais retirez-le en production.
+    # "*"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
 
 # --- Définir le schéma des données d'entrée attendues (Pydantic) ---
 # Cette classe DOIT être définie AVANT qu'elle ne soit utilisée dans l'endpoint.
