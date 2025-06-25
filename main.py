@@ -85,7 +85,11 @@ app.add_middleware(
 )
 
 # Gérer explicitement les requêtes OPTIONS
-@app.options("/{full_path:path}")
+@app.options("/")
+@app.options("/predict/")
+@app.options("/{path:path}")
+async def handle_options():
+    return {"status": "ok"}
 async def options_handler():
     return {"message": "OK"}
 
