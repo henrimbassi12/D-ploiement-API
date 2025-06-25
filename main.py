@@ -63,6 +63,20 @@ app = FastAPI(
     version="1.0.0",
 )
 
+# --- Configuration CORS ---
+origins = [
+    "https://e0c7f470-1b7d-41c4-ab43-1ae19dda48f8.lovableproject.com",
+    "http://localhost:8080"  # Pour le développement local
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # --- Définir le schéma des données d'entrée attendues (Pydantic) ---
 # Cette classe DOIT être définie AVANT qu'elle ne soit utilisée dans l'endpoint.
 class FrigoData(BaseModel):
