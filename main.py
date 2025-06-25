@@ -68,21 +68,21 @@ app = FastAPI(
 
 # --- Configuration CORS ---
 origins = [
-    "http://localhost",
-    "http://localhost:8080", # Si votre front-end Lovable tourne localement sur le port 8080
-    "https://gulfmaintain-insight-hub.lovable.app", # <--- C'est la ligne CRUCIALE à ajouter/modifier
-    # Si vous êtes encore en phase de test intensif et que vous avez des doutes sur l'URL exacte,
-    # vous pouvez temporairement laisser le "*" comme dernière option, mais retirez-le en production.
-    # "*"
+    "http://localhost",
+    "http://localhost:8080", # Si votre front-end Lovable tourne localement sur le port 8080
+    "https://gulfmaintain-insight-hub.lovable.app", # <--- C'est la ligne CRUCIALE à ajouter/modifier
+    # Si vous êtes encore en phase de test intensif et que vous avez des doutes sur l'URL exacte,
+    # vous pouvez temporairement laisser le "*" comme dernière option, mais retirez-le en production.
+    # "*"
 ]
 
 app.add_middleware(
-    CORSMiddleware,
-    # Utilisez 'origins' pour la production, ou ["*"] pour le test initial (moins sûr)
-    allow_origins=origins, # OU ["*"] pour les tests initiaux non sécurisés
-    allow_credentials=True,
-    allow_methods=["GET", "POST", "OPTIONS"],
-    allow_headers=["*"],
+    CORSMiddleware,
+    # Utilisez 'origins' pour la production, ou ["*"] pour le test initial (moins sûr)
+    allow_origins=origins, # OU ["*"] pour les tests initiaux non sécurisés
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_headers=["*"],
 )
 
 # Supprimez les gestionnaires OPTIONS explicites si CORSMiddleware suffit
@@ -90,12 +90,11 @@ app.add_middleware(
 # @app.options("/predict/")
 # @app.options("/{path:path}")
 # async def handle_options():
-#     return {"status": "ok"}
+#     return {"status": "ok"}
 
 # Supprimez cette fonction car elle n'est pas utilisée comme gestionnaire de route
 # async def options_handler():
-#    return {"message": "OK"}
-
+#    return {"message": "OK"}
 
 
 
