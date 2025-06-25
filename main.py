@@ -78,7 +78,7 @@ origins = [
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://e0c7f470-1b7d-41c4-ab43-1ae19dda48f8.lovableproject.com"],
+    allow_origins=["*"]  # Autorise tous les domaines (pour test),
     allow_credentials=True,
     allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],
