@@ -78,11 +78,16 @@ origins = [
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["https://e0c7f470-1b7d-41c4-ab43-1ae19dda48f8.lovableproject.com"],
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],
 )
+
+# Gérer explicitement les requêtes OPTIONS
+@app.options("/{full_path:path}")
+async def options_handler():
+    return {"message": "OK"}
 
 
 
