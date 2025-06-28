@@ -123,6 +123,7 @@ class FrigoData(BaseModel):
     Date: str # Date comme string attendue en entrée
 
 # --- Définir un endpoint (une route) pour la prédiction ---
+@app.post("/predict", summary="Prédire le statut post-entretien d'un frigo") # Ajoutez cette ligne
 @app.post("/predict/", summary="Prédire le statut post-entretien d'un frigo")
 async def predict_status(data: FrigoData):
     """
