@@ -67,22 +67,22 @@ app = FastAPI(
 
 
 # --- Configuration CORS ---
+# Configuration CORS ---
 origins = [
-    "http://localhost",
-    "http://localhost:8080", # Si votre front-end Lovable tourne localement sur le port 8080
-    "https://gulfmaintain-insight-hub.lovable.app", # <--- C'est la ligne CRUCIALE à ajouter/modifier
-    # Si vous êtes encore en phase de test intensif et que vous avez des doutes sur l'URL exacte,
-    # vous pouvez temporairement laisser le "*" comme dernière option, mais retirez-le en production.
-    # "*"
+    "http://localhost",
+    "http://localhost:8080",
+    "https://gulfmaintain-insight-hub.lovable.app",
+    # Si vous voulez l'ancien "*" temporairement, vous pouvez le laisser ici pour le test local
+    # ou le supprimer pour une sécurité accrue en production.
+    # "*"
 ]
 
 app.add_middleware(
-    CORSMiddleware,
-    # Utilisez 'origins' pour la production, ou ["*"] pour le test initial (moins sûr)
-    allow_origins=origins, # OU ["*"] pour les tests initiaux non sécurisés
-    allow_credentials=True,
-    allow_methods=["GET", "POST", "OPTIONS"],
-    allow_headers=["*"],
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_headers=["*"],
 )
 
 # Supprimez les gestionnaires OPTIONS explicites si CORSMiddleware suffit
