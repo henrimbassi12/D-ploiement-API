@@ -66,15 +66,19 @@ app = FastAPI(
 
 
 
-# --- Configuration CORS ---
 # Configuration CORS ---
 origins = [
     "http://localhost",
     "http://localhost:8080",
+    # L'ancienne URL Lovable.app personnalisée (elle doit aussi être incluse si elle est utilisée ailleurs)
     "https://gulfmaintain-insight-hub.lovable.app",
-    # Si vous voulez l'ancien "*" temporairement, vous pouvez le laisser ici pour le test local
-    # ou le supprimer pour une sécurité accrue en production.
-    # "*"
+    # *** NOUVEAUX DOMAINES À AJOUTER ***
+    # L'URL par défaut de votre API sur Railway (que le frontend semble toujours appeler)
+    "https://web-production-c2b6a.up.railway.app",
+    # L'origine réelle de l'application frontend Lovable.app
+    "https://e0c7f470-1b7d-41c4-ab43-1ae19dda48f8.lovableproject.com",
+    # Ou si vous êtes en phase de développement intense et que vous voulez tout autoriser (moins sécurisé pour la prod)
+    # "*",
 ]
 
 app.add_middleware(
